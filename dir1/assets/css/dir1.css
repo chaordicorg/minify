@@ -1,0 +1,21 @@
+#result-block dt{ width: 200px;}
+#result-block dd{ padding-left: 20px; }
+#result-block li.name{
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+#result-inline dt,
+#result-inline img{ width: 196px;}
+
+.iv{
+	opacity: 0;
+	transition: .8s;
+	transform: translate(0, 30px);
+	-webkit-transform: translate(0, 30px);
+}
+
+	.iv-fadeup{
+		opacity: 1.0;
+		transform: translate(0, 0);
+		-webkit-transform: translate(0, 0);
+	}

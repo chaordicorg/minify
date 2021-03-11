@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>minify-sample</title>
+	<script type="text/javascript" src="./assets/minifyset.config.js"></script>
+	<script type="text/javascript" src="./minifyset.loader.js"></script>
+	<script>
+	hljs.configure({
+		tabReplace: '    ', // スペース4つ
+	})
+	hljs.initHighlightingOnLoad();
+	</script>
+</head>
+
+
+
+<body>
+<div class="container">
+	<h5>■ minifysetの使い方</h5>
+	<article>
+		| ローダーをつくる |
+		<a href="./dir1">minify化する</a> |
+		<a href="./dir1/dir2/">サンプルページ</a> |
+	</article>
+
+	<main>
+		<h1>ローダーをつくる</h1>
+
+		<article>
+			<div class="alert alert-success" role="alert">
+				<strong>1</strong>：　対象ページに読み込むファイルと、minify化したファイルの出力先を設定する「minifyset.config.js」を作ります。
+			</div>
+			<div class="alert alert-danger" role="alert">
+				<strong>注意</strong>：　このファイルは対象ページごとに作成する必要があります。「base:」に設定するパスが「対象ページからコンテンツ・ルートへの相対パス」であることに注意してください。
+			</div>
+<pre><code>var _minconfig = {
+	"base": ".", // 対象ページからコンテンツ・ルートへの相対パス
+	"set": [
+		{
+			// -- 読み込むCSSファイル
+			"type": "css",
+			"files":[
+				"./common/css/common.css",
+				"./assets/css/top.css",
+				"./common/lib/bootstrap-4.5.3.css",
+				"./common/lib/highlightjs-railscasts.min.css",
+			],
+			"minify": "./assets/css/top.min.css" // minify化したCSSファイルの出力先
+		},
+		{
+			// -- 読み込むJSファイル
+			"type": "js",
+			"files":[
+				"./common/lib/jquery-3.6.0.js",
+				"./common/lib/bootstrap-4.5.3.js",
+				"./common/lib/highlight.min.js",
+				"./common/lib/jquery.clone_blocks.js",
+				"./common/lib/jquery.inview.min.js",
+				"assets/js/top.js",
+			],
+			"minify": "./assets/js/top.min.js"	// minify化したJSファイルの出力先
+		}
+	]
+}
+</code></pre>
+		</article>
+
+		<article>
+			<div class="alert alert-success" role="alert">
+				<strong>2</strong>：　「_minifyset/」と「minifyset.loader.js」をコンテンツ・ルートに置きます。<br>
+			</div>
+			<div class="alert alert-danger" role="alert">
+				<strong>注意</strong>：　「_minifyset/」フォルダにはminify化を実行するファイルが入っています。公開サーバーにアップロードしないでください。
+			</div>
+			<div class="alert alert-success" role="alert">
+				<strong>3</strong>：　「minifyset.config.js」を任意のディレクトリに置きます（例では「assets/」 の中）。
+			</div>
+<pre><code>コンテンツ・ルート/
+	├ _minifyset/ * minify化する実行ファイル群
+	├ assets/
+	│	├ css/
+	│	|	└ top.css
+	│	├ js/
+	│	|	└ top.js
+	│	└ minifyset.config.js *
+	└ common/
+	index.html
+	minifyset.loader.js *
+</code></pre>
+		</article>
+
+		<article>
+			<div class="alert alert-success" role="alert">
+				<strong>4</strong>：　対象ページに「minifyset.config.js」と「minifyset.loader.js」を読み込みます。
+			</div>
+<pre><code>&lt;script type="text/javascript" src="./assets/minifyset.config.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="./minifyset.loader.js"&gt;&lt;/script&gt;
+</code></pre>
+		</article>
+
+
+		<article id="background"></article>
+	</main>
+</div>
+
+
+
+
+<!--
+<script>
+// 特殊文字をエスケープせずにHTMLのソースコードをそのまま表示させる
+// https://bit.ly/3kKtalN
+document.querySelectorAll('pre > code').forEach(function(elem){
+	elem.textContent = elem.innerHTML.trim();
+});
+</script>
+-->
+
+
+
+</body>
+
+
+
+</html>

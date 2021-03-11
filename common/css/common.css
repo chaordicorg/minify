@@ -1,0 +1,23 @@
+/*
+ * common.css
+ */
+
+#background{
+	width:100%;
+	background-image: url(./bg.jpg);
+	background-size: cover;
+}
+
+	#background:before {
+		content: "";
+		display: block;
+		padding-top: 75%;
+	}
+
+article{
+	margin-bottom: 40px;
+}
+
+h1{
+	padding-bottom: 20px;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<title>dir2</title>
+	<script type="text/javascript" src="./assets/minifyset.config.js"></script>
+	<script type="text/javascript" src="../../minifyset.loader.js"></script>
+	<script>
+	hljs.configure({
+		tabReplace: '    ', // スペース4つ
+	})
+	hljs.initHighlightingOnLoad();
+	</script>
+</head>
+
+
+
+<body>
+<div class="container">
+	<h5>■ minifysetの使い方</h5>
+	<article>
+		| <a href="../../">ローダーをつくる</a> |
+		<a href="../">minify化する</a> |
+		サンプルページ |
+	</article>
+
+
+
+
+	<main>
+		<h1>サンプルページ</h1>
+
+
+
+		<section id="result-block" class="card-columns">
+			<div class="clone-template card" style="opacity: 0">
+				<div><a href="#" class="url" target="_blank"><img src="" class="artwork" /></a></div>
+				<div class="card-body">
+					<h1 class="count"></h1>
+					<p>
+						<span class="music"><a href="#" target="_blank" class="url">曲名</a></span><br>
+						<span class="artist small"><a href="#" target="_blank">アーティストネーム</a></span>
+					</p>
+					<p class="genre card-text"></p>
+				</div>
+			</div>
+		</section>
+
+
+
+<h5>html</h5>
+<pre><code>
+&lt;section id="result-block" class="card-columns"&gt;
+	&lt;div class="clone-template card" style="opacity: 0"&gt;
+		&lt;div&gt;&lt;a href="#" class="url" target="_blank"&gt;&lt;img src="" class="artwork" /&gt;&lt;/a&gt;&lt;/div&gt;
+		&lt;div class="card-body"&gt;
+			&lt;h1 class="count"&gt;&lt;/h1&gt;
+			&lt;p&gt;
+				&lt;span class="music"&gt;&lt;a href="#" target="_blank" class="url"&gt;曲名&lt;/a&gt;&lt;/span&gt;&lt;br&gt;
+				&lt;span class="artist small"&gt;&lt;a href="#" target="_blank"&gt;アーティストネーム&lt;/a&gt;&lt;/span&gt;
+			&lt;/p&gt;
+			&lt;p class="genre card-text"&gt;&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+
+<h5>js</h5>
+<pre><code>
+$.ajax({
+	url: './assets/php/get-json.php',
+	type: 'POST',
+	dataType: 'json'
+
+}).done(function(_json){
+	_result = JSON.parse(JSON.stringify(_json.feed.results));
+
+	// -- ブロック
+	var count = 0;
+	_result.forEach(function(_obj){
+		_obj.genre = "";
+		_obj.genres.forEach(function(_genre){
+			_obj.genre  += '&lt;a href="'
+						+ _genre.url
+						+ '" target="_blank" class="btn btn-warning btn-sm small"&gt;'
+						+ _genre.name
+						+ '&lt;/a&gt;' + "\n";
+		});
+		count++;
+
+		$('#result-block').clone_blocks({
+			'item':[
+				['src',  '.artwork',  _obj.artworkUrl100],
+				['href', '.url',	  _obj.url],
+				['html', '.music a',  _obj.name],
+				['href', '.artist a', _obj.artistUrl],
+				['html', '.artist a', _obj.artistName],
+				['html', '.genre',    _obj.genre],
+				['html', '.count',    count]
+			],
+			'display': 'block',
+			'callback': function($blk){
+				$blk.animate({opacity: 1}, {duration: 1000, easing: 'swing'});
+			}
+		})
+	});
+
+}).fail(function(data){
+	console.error(data);
+});
+</code></pre>
+
+<h5>php</h5>
+<pre><code>
+$url = "https://rss.itunes.apple.com/api/v1/jp/itunes-music/top-songs/all/100/explicit.json";
+$json = file_get_contents($url);
+$json = mb_convert_encoding($json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+
+echo($json);
+</code></pre>
+
+
+
+	</main>
+
+
+
+
+
+
+
+</body>
+</html>

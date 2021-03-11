@@ -1,0 +1,13 @@
+.card{
+	diplay: inline-block;
+}
+
+img.artwork{
+	width:100%;
+}
+
+.genre a{
+	display:inline-block;
+	margin-bottom:5px;
+}
+
