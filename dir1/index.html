@@ -19,9 +19,10 @@
 <div class="container">
 	<h5>■ minifysetの使い方</h5>
 	<article>
-		| <a href="../">ローダーをつくる</a> |
+		| <a href="../">minifysetの環境をつくる</a> |
 		minify化する |
 		<a href="./dir2/">サンプルページ</a> |
+		<a href="https://github.com/chaordicorg/minifyset/" target="_blank">ダウンロード</a> |
 	</article>
 
 	<main>
@@ -36,7 +37,8 @@
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<strong>6</strong>：　minify化されたファイルが作成されているか確認します。<br>「top.min.css」と「top.min.js」が作成されて、ディレクトリ構成は以下のようになります。
+				<p><strong>6</strong>：　minify化されたファイルが作成されているか確認します。</p>
+				「top.min.css」と「top.min.js」が作成されて、ディレクトリ構成は以下のようになります。
 			</div>
 <pre><code>コンテンツ・ルート/
 	├ _minifyset/
@@ -56,8 +58,7 @@
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<strong>7</strong>：　ローカル環境時の読み込みを確認する<br>
-				「minifyset.loader.js」は、ローカル環境か公開環境かを判断して、それぞれ別のファイルを読み込む処理をします。
+				<strong>7</strong>：　ローカル環境時の読み込みを確認する。
 			</div>
 			<div class="alert alert-danger" role="alert">
 				<strong>注意</strong>：　ローカル環境のホスト名は初期値で「localhost」に設定されています。違う場合は「minifyset.loader.js」の変数「localhost」の値を変更してください。
@@ -84,10 +85,10 @@
 				<strong>8</strong>：　公開環境時の読み込みを確認する
 			</div>
 			<div class="alert alert-danger" role="alert">
-				<strong>ローカル環境で公開時の確認をする</strong>：　「minifyset.loader.js」の変数「localhost」の値をテキトーなものに変えると、公開環境時のテストできます。<br>
-				var localhost = "localhost";<br>
+				<strong>ローカル環境で公開時の確認をする</strong>：　「minifyset.loader.js」にある配列「_localhost」の値から「localhost」を削除する。<br>
+				var _localhost = ["localhost", "....."];<br>
 				　　　　↓<br>
-				var localhost = "テキトー";
+				var _localhost = ["....."];
 			</div>
 			<p>
 				http://公開環境ドメイン/コンテンツ・ルート/<br>

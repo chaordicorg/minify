@@ -2,12 +2,12 @@
  * minifyset.loader.js
  */
 
-var localhost = "localhost";
+var _localhost = ["localhost", "chaordicorg.github.io"];
 
 
 
 var host = document.domain;
-
+console.log('host => ' + host);
 
 
 // -- CSSのローダー
@@ -34,7 +34,7 @@ for (var i in _minconfig.set){
 	var type = _set.type
 
 	if (type == 'css'){
-		if (host == localhost){
+		if (_localhost.includes(host)){
 			for (var n in _set.files){
 				appendCSS(_set.files[n])
 			}
@@ -43,7 +43,7 @@ for (var i in _minconfig.set){
 		}
 
 	}else if (type == 'js'){
-		if (host == localhost){
+		if (_localhost.includes(host)){
 			for (var n in _set.files){
 				document.write('<script type="text/javascript" src="' + _set.files[n] + '"></script>');
 			}

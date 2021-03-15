@@ -19,13 +19,25 @@
 <div class="container">
 	<h5>■ minifysetの使い方</h5>
 	<article>
-		| ローダーをつくる |
+		| minifysetの環境をつくる |
 		<a href="./dir1">minify化する</a> |
 		<a href="./dir1/dir2/">サンプルページ</a> |
+		<a href="https://github.com/chaordicorg/minifyset/" target="_blank">ダウンロード</a> |
 	</article>
 
 	<main>
-		<h1>ローダーをつくる</h1>
+
+		<h1>概要と利点</h1>
+		<article>
+			<p>これは、JSやCSSファイルを圧縮して一つのファイルにするためのセットです。</p>
+			<ul>
+				<li>ファイルが圧縮され一つのファイルになるので、読み込み時間が軽減される。</li>
+				<li>コメントが削除されるので、セキュリティ的な懸念が減る。</li>
+				<li>開発時に、JSやCSSのファイルをいくらでも分割できる。</li>
+			</li>
+		</article>
+
+		<h1>minifysetの環境をつくる</h1>
 
 		<article>
 			<div class="alert alert-success" role="alert">
@@ -68,10 +80,12 @@
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<strong>2</strong>：　「_minifyset/」と「minifyset.loader.js」をコンテンツ・ルートに置きます。<br>
+				<p><strong>2</strong>：　「_minifyset/」と「minifyset.loader.js」をコンテンツ・ルートに置きます。</p>
+				「_minifyset/」は、minify化を実行するファイルが入っています。公開サーバーにアップロードしないでください。<br>
+				「minifyset.loader.js」は、ローカル環境か公開環境かを判断して、それぞれ別のファイルを読み込む処理をします。
 			</div>
 			<div class="alert alert-danger" role="alert">
-				<strong>注意</strong>：　「_minifyset/」フォルダにはminify化を実行するファイルが入っています。公開サーバーにアップロードしないでください。
+				<strong>注意</strong>：　「_minifyset/」フォルダは、公開サーバーにアップロードしないでください。
 			</div>
 			<div class="alert alert-success" role="alert">
 				<strong>3</strong>：　「minifyset.config.js」を任意のディレクトリに置きます（例では「assets/」 の中）。
