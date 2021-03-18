@@ -35,15 +35,20 @@ $.ajax({
 						},
 						success: function(html) {
 							console.log(html);
+							$('.info').html('Minify化しました');
 						},
 						error: function(data) {
 							console.error(data);
+							$('.info').html('エラーがあります');
+							$('.error-3').html(data.responseText);
 						}
 					});
 
 				},
 				error: function(data) {
 					console.error(data);
+					$('.info').html('エラーがあります');
+					$('.error-2').html(data.responseText);
 				}
 			});
 
@@ -53,6 +58,8 @@ $.ajax({
 	},
 	error: function(data) {
 		console.error(data);
+		$('.info').html('エラーがあります');
+		$('.error-1').html(data.responseText);
 	}
 
 
