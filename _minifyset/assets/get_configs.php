@@ -8,7 +8,8 @@ $result = list_files($dir);
 $_configs = [];
 foreach ($result as $key => $path) {
     $file = basename($path);
-    if ($file == 'minifyset.config.js'){
+    // if ($file == 'minifyset.config.js'){
+    if (strpos($file, 'minifyset.config') !== false){
         $path = str_replace('\\', '/', $path);
         array_push($_configs, $path);
     }
