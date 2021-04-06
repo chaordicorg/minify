@@ -1,4 +1,3 @@
 # minifyset
-実務でつかったものを保存しています。あまり汎用性はありません。
-
+実務でつくったものを保存しています。
 [使い方とサンプル](https://chaordicorg.github.io/minifyset/)
