@@ -6,6 +6,7 @@
 // -- ローカルホスト設定
 var _localhost = [
 	"localhost",
+	"chaordicorg.github.io"
 ];
 
 
