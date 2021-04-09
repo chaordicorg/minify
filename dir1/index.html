@@ -60,13 +60,11 @@
 			<div class="alert alert-success" role="alert">
 				<strong>7：　ローカル環境時の読み込みを確認する。</strong>
 			</div>
+			<p>http://localhost/コンテンツ・ルート/</p>
 			<div class="alert alert-danger" role="alert">
 				<strong>注意</strong>：　ローカル環境のホスト名は初期値で「localhost」が設定されています。違う場合は minifyset.loader.js の変数 localhost の値を変更してください。
 			</div>
-			<p>
-				http://localhost/コンテンツ・ルート/<br>
-				--> ローカル環境の時、下記のように元ファイルを読み込みます。
-			</p>
+			<p>--> ローカル環境の時、下記のように元ファイルを読み込みます。</p>
 <pre><code>&lt;link href="./common/css/common.css" rel="stylesheet" type="text/css"&gt;
 &lt;link href="./assets/css/top.css" rel="stylesheet" type="text/css"&gt;
 &lt;link href="./common/lib/bootstrap-4.5.3.css" rel="stylesheet" type="text/css"&gt;
@@ -84,20 +82,19 @@
 			<div class="alert alert-success" role="alert">
 				<strong>8：　公開環境時の読み込みを確認する</strong>
 			</div>
+			<p>http://公開環境ドメイン/コンテンツ・ルート/</p>
 			<div class="alert alert-danger" role="alert">
 				<strong>ローカル環境で公開時の確認をする</strong>：　minifyset.loader.js にある配列 _localhost の値から「localhost」を削除する（または値を変える）。<br>
 				var _localhost = ["localhost", "....."];<br>
 				　　　　↓<br>
 				var _localhost = ["....."];
 			</div>
-			<p>
-				http://公開環境ドメイン/コンテンツ・ルート/<br>
-				--> 公開環境の時、minify化されたファイルを読み込みます。
-			</p>
+			<p>--> 公開環境の時、minify化されたファイルを読み込みます。</p>
+
 <pre><code>&lt;link href="./assets/css/top.min.css" rel="stylesheet" type="text/css"&gt;
 &lt;script type="text/javascript" src="./assets/js/top.min.js"&gt;&lt;/script&gt;
 </code></pre>
-			
+
 		</article>
 	</main>
 </div>
