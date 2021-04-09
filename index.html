@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>minify-sample</title>
-	<script type="text/javascript" src="./assets/minifyset.config.js"></script>
+	<script type="text/javascript" src="./minifyset.config.js"></script>
 	<script type="text/javascript" src="./minifyset.loader.js"></script>
 	<script>
 	hljs.configure({
@@ -30,8 +30,8 @@
 		<h1>概要と利点</h1>
 		<article>
 			<p>これは、JSやCSSファイルを圧縮して一つのファイルにまとめるためのセットです。</p>
-			<p>この手のツールでは現在 webpack が主流ですが、node.js によるモダンな開発環境を構築しなければならず、また、設定も複雑なので敷居が高いです。ごく普通のWEBページでも、ヘッダーにずらっとならんだJSライブラリやCSSをひとまとめにできないかと思ってつくりました。圧縮化（minify化）はPHPのライブラリ <a href="https://github.com/matthiasmullie/minify" target="_blank">minify</a> を使っています。</p>
-			<p>XAMPP や MAMP などでローカルサーバの開発環境を用意する必要があります。</p>
+			<p>この手のツールでは現在 webpack が主流ですが、node.js によるモダンな開発環境を構築しなければならず、また、設定も複雑なため敷居が高い。ごく普通のWEBページでも、ヘッダーにずらっとならんだJSライブラリやCSSファイルをひとまとめにして読み込めないかと思ってつくりました。圧縮化（minify化）はPHPのライブラリ <a href="https://github.com/matthiasmullie/minify" target="_blank">minify</a> を使っています。</p>
+			<p>XAMPP や MAMP などのローカルサーバの開発環境を用意する必要があります。</p>
 			<ul>
 				<li>ファイルが圧縮され一つのファイルになるので、読み込み時間が軽減される。</li>
 				<li>コメントが削除されるので、セキュリティ的な懸念が減る。</li>
@@ -43,14 +43,12 @@
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<strong>1</strong>：　対象ページに読み込むファイルと、minify化したファイルの出力先を設定する「minifyset.config.js」を作ります。<br>
-				（※同ディレクトリに複数の設定ファイルを設置したい場合は「minifyset.config.***.js」とします。）
-			</div>
-			<div class="alert alert-danger" role="alert">
-				<strong>注意</strong>：　このファイルは対象ページごとに作成する必要があります。「base:」に設定するパスが「コンテンツ・ルートからの相対パス」であることに注意してください。仮に「dir1」というディレクトリの配下に置かれる場合 base は「./dir1」と指定します。
+				<p><strong>1： minifyset.config.js をつくります。</strong></p>
+				・読み込むファイルとminify化したファイルの出力先を設定します。<br>
+				・読み見込むファイルと同階層に置きます。<br>
+				・同階層に複数設置したい場合は、ファイル名を minifyset.config.***.js のようにします。
 			</div>
 <pre><code>var _minconfig = {
-	"base": ".", // コンテンツ・ルートからの相対パス
 	"set": [
 		{
 			// -- 読み込むCSSファイル
@@ -83,15 +81,12 @@
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<p><strong>2</strong>：　「_minifyset/」と「minifyset.loader.js」をコンテンツ・ルートに置きます。</p>
-				「_minifyset/」は、minify化を実行するファイルが入っています。公開サーバーにアップロードしないでください。<br>
-				「minifyset.loader.js」は、ローカル環境か公開環境かを判断して、それぞれ別のファイルを読み込む処理をします。
+				<p><strong>2：　_minifyset/ と minifyset.loader.js をコンテンツルートに置きます。</strong></p>
+				_minifyset/ には、minify化を実行するファイルが入っています。<br>
+				 minifyset.loader.js は minifyset.config.js で設定したファイルをHTMLファイルに読み込む処理をします。
 			</div>
 			<div class="alert alert-danger" role="alert">
 				<strong>注意</strong>：　「_minifyset/」フォルダは、公開サーバーにアップロードしないでください。
-			</div>
-			<div class="alert alert-success" role="alert">
-				<strong>3</strong>：　「minifyset.config.js」を任意のディレクトリに置きます（例では「assets/」 の中）。
 			</div>
 <pre><code>コンテンツ・ルート/
 	├ _minifyset/ * minify化する実行ファイル群
@@ -99,19 +94,19 @@
 	│	├ css/
 	│	|	└ top.css
 	│	├ js/
-	│	|	└ top.js
-	│	└ minifyset.config.js *
+	│		└ top.js
 	└ common/
 	index.html
+	minifyset.config.js *
 	minifyset.loader.js *
 </code></pre>
 		</article>
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<strong>4</strong>：　対象ページに「minifyset.config.js」と「minifyset.loader.js」を読み込みます。
+				<strong>4</strong>：　対象のページに minifyset.config.js と minifyset.loader.js を読み込みます。
 			</div>
-<pre><code>&lt;script type="text/javascript" src="./assets/minifyset.config.js"&gt;&lt;/script&gt;
+<pre><code>&lt;script type="text/javascript" src="./minifyset.config.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="./minifyset.loader.js"&gt;&lt;/script&gt;
 </code></pre>
 		</article>

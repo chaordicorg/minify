@@ -3,7 +3,6 @@
  */
 
 var _minconfig = {
-	"base": "./dir1/dir2", // コンテンツ・ルートからの相対パス
 	"set":[
 		{
 			// -- 読み込むCSSファイル

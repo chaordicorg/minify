@@ -10,47 +10,45 @@ require_once './path-converter/src/ConverterInterface.php';
 require_once './path-converter/src/Converter.php';
 
 $contents_root = $_POST['contents_root'];
-$_json = $_POST['json'];
+$base_path     = $_POST['base_path'];
+$_json         = $_POST['json'];
 
 chdir('../'.$contents_root);
 $root_path = getcwd();
 
+$base_path = rtrim($base_path, '/');
+chdir($base_path);
+$now_path = getcwd();
+
 use MatthiasMullie\Minify;
+foreach ($_json["set"] as $_){
 
-	chdir($root_path);
+	if ($_['type'] == 'css'){
+		$minifier = new Minify\CSS();
 
-	$base = rtrim($_json["base"], '/');
-	chdir($base);
-
-	foreach ($_json["set"] as $_){
-
-		if ($_['type'] == 'css'){
-			$minifier = new Minify\CSS();
-
-			foreach ($_['files'] as $file){
-				$minifier->add($file);
-			}
-
-			// -- * minifyファイルの出力 * --//
-			$minify = $_['minify'];
-			$minifier->minify($minify);
-
-		}else if ($_['type'] == 'js'){
-			$minifier = new Minify\JS();
-
-			foreach ($_['files'] as $file){
-				$minifier->add($file);
-			}
-
-			// -- * minifyファイルの出力 * --//
-			$minify = $_['minify'];
-			$minifier->minify($minify);
-
+		foreach ($_['files'] as $file){
+			$minifier->add($file);
 		}
-	}
-// }
 
-print '{"respons": "OK"}';
+		// -- * minifyファイルの出力 * --//
+		$minify = $_['minify'];
+		$minifier->minify($minify);
+
+	}else if ($_['type'] == 'js'){
+		$minifier = new Minify\JS();
+
+		foreach ($_['files'] as $file){
+			$minifier->add($file);
+		}
+
+		// -- * minifyファイルの出力 * --//
+		$minify = $_['minify'];
+		$minifier->minify($minify);
+
+	}
+}
+
+print '{}';
 
 
 ?>
