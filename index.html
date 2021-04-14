@@ -27,11 +27,9 @@
 
 	<main>
 
-		<h1>概要と利点</h1>
 		<article>
-			<p>これは、JSやCSSファイルを圧縮して一つのファイルにまとめるためのセットです。</p>
-			<p>この手のツールでは現在 webpack が主流ですが、node.js によるモダンな開発環境を構築しなければならず、また、設定も複雑なため敷居が高い。ごく普通のWEBページでも、ヘッダーにずらっとならんだJSライブラリやCSSファイルをひとまとめにして読み込めないかと思ってつくりました。圧縮化（minify化）はPHPのライブラリ <a href="https://github.com/matthiasmullie/minify" target="_blank">minify</a> を使っています。</p>
-			<p>XAMPP や MAMP などのローカルサーバの開発環境を用意する必要があります。</p>
+			<p>minifyset は、LAMP環境で複数のJSやCSSファイルを一つににまとめるためのツールです。</p>
+			<p>この手のツールでは現在 webpack が主流ですが、node.js によるモダンな開発環境を構築しなければならず、また、設定も複雑でなかなか手が出せません。ごく普通のWEBページでも、ヘッダーにずらっとならんだJSライブラリやCSSファイルをひとまとめにできないか、そして長くなりすぎてアクセスが悪いファイルを複数に分割できないか、という思いから作成されました。圧縮化（minify化）はPHPのライブラリ <a href="https://github.com/matthiasmullie/minify" target="_blank">minify</a> を使っています。</p>
 			<ul>
 				<li>ファイルが圧縮され一つのファイルになるので、読み込み時間が軽減される。</li>
 				<li>コメントが削除されるので、セキュリティ的な懸念が減る。</li>
@@ -41,12 +39,12 @@
 
 		<h1>minifysetの環境をつくる</h1>
 
-		<article>
+		<article>　
 			<div class="alert alert-success" role="alert">
 				<p><strong>1： minifyset.config.js をつくります。</strong></p>
-				・読み込むファイルとminify化したファイルの出力先を設定します。<br>
-				・読み見込むファイルと同階層に置きます。<br>
-				・同階層に複数設置したい場合は、ファイル名を minifyset.config.***.js のようにします。
+				・読み込むファイルとminify化したファイルの出力先を設定する。<br>
+				・読み見込むファイルと同階層に置く。<br>
+				・同階層に複数設置したい場合、ファイル名を minifyset.config.***.js のようにする。
 			</div>
 <pre><code>var _minconfig = {
 	"set": [
@@ -82,8 +80,8 @@
 		<article>
 			<div class="alert alert-success" role="alert">
 				<p><strong>2：　_minifyset/ と minifyset.loader.js をコンテンツルートに置きます。</strong></p>
-				_minifyset/ には、minify化を実行するファイルが入っています。<br>
-				 minifyset.loader.js は minifyset.config.js で設定したファイルをHTMLファイルに読み込む処理をします。
+				・_minifyset/ には、minify化を実行するファイルが入っています。<br>
+				・minifyset.loader.js は minifyset.config.js で設定したファイルをHTMLファイルに読み込む処理をします。
 			</div>
 			<div class="alert alert-danger" role="alert">
 				<strong>注意</strong>：　「_minifyset/」フォルダは、公開サーバーにアップロードしないでください。
