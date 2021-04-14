@@ -29,8 +29,8 @@
 
 		<article>
 			<p>これは LAMP環境で複数のJSやCSSファイルを一つににまとめるためのツールです。</p>
-			<p>この手のツールでは現在 webpack が主流ですが、node.js によるモダンな開発環境を用意しなければならず、また、設定も複雑でなかなか手が出せません。</p>
-			<p>ごく普通のWEBサイトの制作でも、ヘッダーにずらっとならんだ読み込みファイルを一つにまとめられないか、そして長くなりすぎて修正箇所を見つけづらいファイルを複数に分割できないか、という思いから作成されました。</p>
+			<p>この手のツールは現在 webpack が主流ですが、node.js によるモダンな開発環境を用意しなければならず、また、設定も複雑でなかなか手が出せません。</p>
+			<p>ごく普通のWEBサイトの制作でも、ヘッダーにずらっとならんだ読み込みファイルを一つにまとめられないか、そして長くなりすぎて修正箇所が見つけづらいファイルを機能ごとに分割できないか、という思いから作成されました。</p>
 			<p>圧縮化（ここでは「minify化」と呼びます）はPHPのライブラリ <a href="https://github.com/matthiasmullie/minify" target="_blank">minify</a> を使っています。</p>
 			<p>利点は以下に。</p>
 			<ul>
@@ -52,9 +52,8 @@
 <pre><code>var _minconfig = {
 	"set": [
 		{
-			// -- 読み込むCSSファイル
 			"type": "css",
-			"files":[
+			"files":[ // -- 読み込むCSSファイル
 				"./common/css/common.css",
 				"./assets/css/top.css",
 				"./common/lib/bootstrap-4.5.3.css",
@@ -63,9 +62,8 @@
 			"minify": "./assets/css/top.min.css" // minify化したCSSファイルの出力先
 		},
 		{
-			// -- 読み込むJSファイル
 			"type": "js",
-			"files":[
+			"files":[ // -- 読み込むJSファイル
 				"./common/lib/jquery-3.6.0.js",
 				"./common/lib/bootstrap-4.5.3.js",
 				"./common/lib/highlight.min.js",
@@ -93,7 +91,7 @@
 				・通常コンテンツ・ルートに配置します。<br>
 			</div>
 <pre><code>コンテンツ・ルート/
-	├ _minifyset/ *minify実行
+	├ _minifyset/ * minify実行
 	├ assets/
 	│	├ css/
 	│	|	└ top.css
@@ -107,7 +105,7 @@
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<strong>4</strong>： HTMLファイルに 設定ファイル と ローダー を読み込む
+				<strong>4： HTMLファイルに設定ファイルとローダーを読み込む</strong>
 			</div>
 <pre><code>&lt;script type="text/javascript" src="./minifyset.config.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="./minifyset.loader.js"&gt;&lt;/script&gt;
