@@ -28,22 +28,25 @@
 	<main>
 
 		<article>
-			<p>minifyset は、LAMP環境で複数のJSやCSSファイルを一つににまとめるためのツールです。</p>
-			<p>この手のツールでは現在 webpack が主流ですが、node.js によるモダンな開発環境を構築しなければならず、また、設定も複雑でなかなか手が出せません。ごく普通のWEBページでも、ヘッダーにずらっとならんだJSライブラリやCSSファイルをひとまとめにできないか、そして長くなりすぎてアクセスが悪いファイルを複数に分割できないか、という思いから作成されました。圧縮化（minify化）はPHPのライブラリ <a href="https://github.com/matthiasmullie/minify" target="_blank">minify</a> を使っています。</p>
+			<p>これは LAMP環境で複数のJSやCSSファイルを一つににまとめるためのツールです。</p>
+			<p>この手のツールでは現在 webpack が主流ですが、node.js によるモダンな開発環境を用意しなければならず、また、設定も複雑でなかなか手が出せません。</p>
+			<p>ごく普通のWEBサイトの制作でも、ヘッダーにずらっとならんだ読み込みファイルを一つにまとめられないか、そして長くなりすぎて修正箇所を見つけづらいファイルを複数に分割できないか、という思いから作成されました。</p>
+			<p>圧縮化（ここでは「minify化」と呼びます）はPHPのライブラリ <a href="https://github.com/matthiasmullie/minify" target="_blank">minify</a> を使っています。</p>
+			<p>利点は以下に。</p>
 			<ul>
-				<li>ファイルが圧縮され一つのファイルになるので、読み込み時間が軽減される。</li>
-				<li>コメントが削除されるので、セキュリティ的な懸念が減る。</li>
-				<li>開発時に、JSやCSSのファイルをいくらでも分割できる。</li>
+				<li>圧縮され一つのファイルになるので読み込み時間が軽減される。</li>
+				<li>圧縮され難読化されるのでセキュリティの懸念が減る。</li>
+				<li>開発時に JS や CSS のファイルをいくらでも分割できる。</li>
 			</li>
 		</article>
 
-		<h1>minifysetの環境をつくる</h1>
+		<h1>minifyset の環境をつくる</h1>
 
 		<article>　
 			<div class="alert alert-success" role="alert">
-				<p><strong>1： minifyset.config.js をつくります。</strong></p>
-				・読み込むファイルとminify化したファイルの出力先を設定する。<br>
-				・読み見込むファイルと同階層に置く。<br>
+				<p><strong>1： 設定ファイル（minifyset.config.js）</strong></p>
+				・読み込むファイルと minify化したファイルの出力先を設定。<br>
+				・設定ファイルを読み見込むファイルと同階層に置く。<br>
 				・同階層に複数設置したい場合、ファイル名を minifyset.config.***.js のようにする。
 			</div>
 <pre><code>var _minconfig = {
@@ -79,15 +82,18 @@
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<p><strong>2：　_minifyset/ と minifyset.loader.js をコンテンツルートに置きます。</strong></p>
-				・_minifyset/ には、minify化を実行するファイルが入っています。<br>
-				・minifyset.loader.js は minifyset.config.js で設定したファイルをHTMLファイルに読み込む処理をします。
+				<p><strong>2： _minifysetフォルダ</strong></p>
+				・このフォルダ には、minify化を実行するファイルが入っています。<br>
+				・通常コンテンツ・ルートに配置します。<br>
+				・公開サーバーにアップロードしないでください。
 			</div>
-			<div class="alert alert-danger" role="alert">
-				<strong>注意</strong>：　「_minifyset/」フォルダは、公開サーバーにアップロードしないでください。
+			<div class="alert alert-success" role="alert">
+				<p><strong>3： ローダー（minifyset.loader.js）</strong></p>
+				・設定ファイルで設定されたファイルを読み込む処理をします。<br>
+				・通常コンテンツ・ルートに配置します。<br>
 			</div>
 <pre><code>コンテンツ・ルート/
-	├ _minifyset/ * minify化する実行ファイル群
+	├ _minifyset/ *minify実行
 	├ assets/
 	│	├ css/
 	│	|	└ top.css
@@ -95,14 +101,13 @@
 	│		└ top.js
 	└ common/
 	index.html
-	minifyset.config.js *
-	minifyset.loader.js *
-</code></pre>
+	minifyset.config.js * 設定ファイル
+	minifyset.loader.js * ローダー
 		</article>
 
 		<article>
 			<div class="alert alert-success" role="alert">
-				<strong>4</strong>：　対象のページに minifyset.config.js と minifyset.loader.js を読み込みます。
+				<strong>4</strong>： HTMLファイルに 設定ファイル と ローダー を読み込む
 			</div>
 <pre><code>&lt;script type="text/javascript" src="./minifyset.config.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="./minifyset.loader.js"&gt;&lt;/script&gt;
